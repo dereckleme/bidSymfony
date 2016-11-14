@@ -88,7 +88,8 @@ class LeilaoService
                "timer"    => $leilao->getTempoleilao(),
                "valorAtual" => $leilao->getValorAtual(),
                "valorEconomia" => number_format($valorEconomia, 2, ',', '.'),
-               "desconto" => floor($desconto)
+               "desconto" => floor($desconto),
+               "usuarioAtual" => strtoupper($leilao->getUsuario()->getApelido())
             );
 
             foreach ($leilao->getLances() as $lance) {

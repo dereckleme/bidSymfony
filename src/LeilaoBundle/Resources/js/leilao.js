@@ -41,6 +41,7 @@ BidTravel.Leilao = {
                     var valorAtual = this.valorAtual;
                     var valorEconomia = this.valorEconomia;
                     var desconto = this.desconto;
+                    var usuarioAtual = this.usuarioAtual;
 
                     if (this.lances != null) {
                         var elementLances = $('.lancesLeilao', elementleilao);
@@ -61,6 +62,7 @@ BidTravel.Leilao = {
                     $('.valorAtual', elementleilao).html(valorAtual);
                     $('.valorEconomia', elementleilao).html(valorEconomia);
                     $('.desconto', elementleilao).html(desconto);
+                    $('.usuarioAtual', elementleilao).html(usuarioAtual);
                 });
             },
             error: function(){

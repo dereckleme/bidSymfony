@@ -89,7 +89,7 @@
                                     <li class="active">
                                         <div class="collapsible-header grey-text grey lighten-2 center">
                                             {% if passagem.leilao.usuario %}
-                                                Usuário: {{ passagem.leilao.usuario.apelido|upper }}
+                                                Usuário: <span class="usuarioAtual">{{ passagem.leilao.usuario.apelido|upper }}</span>
                                             {% else %}
                                                 Dê seu lance agora!!
                                             {% endif %}

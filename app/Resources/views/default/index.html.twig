@@ -100,7 +100,7 @@
                             <div class="box-button-lance-home">
                                 <p class="leilao-home-txt-3">Por: <span>R$<span class="valorAtual">{{ passagem.leilao.getValorAtual }}</span></span></p>
                                 <p class="leilao-home-txt-4">{% if passagem.leilao.usuario %}
-                                        Usuário: {{ passagem.leilao.usuario.apelido|upper }}
+                                        Usuário: <span class="usuarioAtual">{{ passagem.leilao.usuario.apelido|upper }}</span>
                                     {% else %}
                                         Dê seu lance agora!!
                                     {% endif %}</p>

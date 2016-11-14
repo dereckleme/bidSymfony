@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\Criteria;
  *
  * @ORM\Table(name="leilao")
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\LeilaoRepository")
  */
 class Leilao
 {
@@ -125,6 +126,10 @@ class Leilao
         $data_inicial = (new \DateTime());
         $data_final = $this->tempoleilao;
 
+        if ($data_final == null) {
+            return null;
+        }
+
         $diferenca = $data_inicial->diff($data_final);
 
         if (!$diferenca->invert) {
@@ -193,7 +198,7 @@ class Leilao
         $limitLances = $this->qtdMinimaLances;
         $totalLances = count($this->getLances());
 
-        if ($limitLances < $totalLances) {
+        if ($limitLances <= $totalLances) {
             return true;
         } else {
             return false;
@@ -235,8 +240,12 @@ class Leilao
     /**
      * @return mixed
      */
-    public function getValorAtual()
+    public function getValorAtual($forceFloat = false)
     {
+        if ($forceFloat) {
+            return $this->valor_atual;
+        }
+
         return number_format($this->valor_atual, 2, ',', '.');
     }
 

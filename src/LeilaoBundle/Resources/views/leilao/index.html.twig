@@ -7,7 +7,7 @@
             <h3 class = "titles-bottom"></h3>
         </div>
     </div>
-    <div class="container">
+    <div id="leilaoLive" class="container" rel="{{ url('leilaoLive') }}">
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
@@ -49,7 +49,7 @@
 
                 {% for passagem in leiloesAbertos %}
 
-                <div class="row">
+                <div class="row" id="leilao{{ passagem.leilao.id }}">
                     <div class="col l4 s12 m6">
                         <div class="card small">
                             <div class="card-image waves-effect waves-block waves-light">
@@ -72,9 +72,9 @@
                         <div class="card small">
                             <div class="row">
                                 <div class="col s8">
-                                    <span class="grey-text"> De R$ {{ passagem.leilao.getValorAtual }} </span>
+                                    <span class="grey-text"> De R$ {{ passagem.valor }} </span>
                                     <br>
-                                    <span class="leilao-home-txt-1 green-text"> Por R$ {{ passagem.valor }} </span>
+                                    <span class="leilao-home-txt-1 green-text"> Por R$ {{ passagem.leilao.getValorAtual }} </span>
                                     <br>
                                     <span class="grey-text"> Economia de </span><span class="green-text"><b> R$ 450,20 </b></span>
                                 </div>
@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="col s6">
                                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                        <a href="{{ path('darLanceLeilaoBundle', {'leilaoId':passagem.leilao.id}) }}" class="waves-effect red btn">Lance</a>
+                                        <a href="{{ path('darLanceLeilaoBundle', {'leilaoId':passagem.leilao.id}) }}" class="waves-effect red btn darLance">Lance</a>
                                     {% else %}
                                         <a href="{{ path('fos_user_security_login') }}" class="waves-effect red btn">Logar</a>
                                     {% endif %}
@@ -123,9 +123,9 @@
                     <div class="col l4 s12 m12">
                         <div class="card small">
                             <div class="col s12 grey lighten-2 center"><h5 class="grey-text">ÚLTIMOS LANCES</h5></div>
-                            <div class="card-content grey-text lighten-2 center">
+                            <div class="card-content grey-text lighten-2 center lancesLeilao">
                                 {% for lance in passagem.leilao.getLancesByLimit(10) %}
-                                <p>{{  lance.id }} R$ {{ lance.valor }} - {{ lance.usuario.apelido|upper }} <p>
+                                <p>R$ {{ lance.valor }} - {{ lance.usuario.apelido|upper }}<p>
                                 {% endfor %}
                             </div>
                         </div>
@@ -310,17 +310,17 @@
             </div>
         </div>
     </div>
-    {% block javascripts %}
-        {% javascripts
-        '@AppBundle/Resources/js/jquery-2.1.1.min.js'
-        '@AppBundle/Resources/js/materialize.js'
-        '@AppBundle/Resources/js/init.js'
-        '@AppBundle/Resources/js/jquery.formatter.min.js'
-        '@AppBundle/Resources/js/swiper.min.js'
-        '@AppBundle/Resources/js/confirmed.js'
-        '@LeilaoBundle/Resources/js/timer.jquery.min.js'
-        '@LeilaoBundle/Resources/js/leilao.js'%}
-        <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-    {% endblock %}
+{% endblock %}
+{% block javascripts %}
+    {% javascripts
+    '@AppBundle/Resources/js/jquery-2.1.1.min.js'
+    '@LeilaoBundle/Resources/js/timer.jquery.min.js'
+    '@LeilaoBundle/Resources/js/leilao.js'
+    '@AppBundle/Resources/js/materialize.js'
+    '@AppBundle/Resources/js/init.js'
+    '@AppBundle/Resources/js/jquery.formatter.min.js'
+    '@AppBundle/Resources/js/swiper.min.js'
+    '@AppBundle/Resources/js/confirmed.js'%}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

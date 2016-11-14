@@ -10,9 +10,12 @@ namespace LeilaoBundle\Service;
 use AppBundle\Entity\LeilaoLances;
 use AppBundle\Entity\Usuario;
 use Doctrine\ORM\EntityManager;
+use AppBundle\Entity\Leilao;
 
 class LeilaoService
 {
+    CONST TEMPO_CONTAGEM_REGRESSIVA = 2; //MINUTOS
+
     /**
      * Doctrine Entity Manager
      *
@@ -40,23 +43,72 @@ class LeilaoService
         $leilaoRepository = $this->em->getRepository('AppBundle:Leilao');
         $leilao = $leilaoRepository->find($leilaoId);
         $saldo = $usuario->getSaldoLances();
-        $data_inicial = (new \DateTime());
+        $leilaoValorAtualUpdated = $leilao->getValorAtual(true) + 0.01;
 
         if (!$leilao) {
             throw new \Exception("Leilão não encontrado");
         }
 
         $leilao->setUsuario($usuario);
+        $leilao->setValorAtual($leilaoValorAtualUpdated);
         $usuario->setSaldoLances($saldo - 1);
         //Cria lance
         $leilaoLance = new LeilaoLances();
         $leilaoLance->setLeilao($leilao);
         $leilaoLance->setUsuario($usuario);
+        $leilaoLance->setValor($leilaoValorAtualUpdated);
+
+        //Start Timer down
+        $lances = count($leilao->getLances()) + 1;
+        if ($lances >= $leilao->getQtdMinimaLances()) {
+            $dataContagem = (new \DateTime());
+            $dataContagem->add(new \DateInterval('PT'.$this::TEMPO_CONTAGEM_REGRESSIVA.'M'));
+            $leilao->setTempoleilao($dataContagem);
+        }
 
         $this->em->persist($leilaoLance);
         $this->em->persist($usuario);
         $this->em->persist($leilao);
 
         $this->em->flush();
+    }
+
+    public function liveInfo($listFull = false)
+    {
+        $leiloes = $this->em->getRepository("AppBundle:Leilao")->getListLeiloesAbertos();
+        $live = array();
+
+        foreach ($leiloes as $leilao) {
+            $live[$leilao->getId()] = array(
+               "idLeilao" => $leilao->getId(),
+               "timer"    => $leilao->getTempoleilao()
+            );
+
+            foreach ($leilao->getLances() as $lance) {
+                $live[$leilao->getId()]['lancesTotal'][] = array(
+                    "idLance" => $lance->getId(),
+                    "valor" => $lance->getValor(),
+                    "usuarioNome" => strtoupper($lance->getUsuario()->getApelido())
+                );
+
+                arsort($live[$leilao->getId()]['lancesTotal']);
+            }
+
+            if (isset($live[$leilao->getId()]['lancesTotal'])) {
+                $live[$leilao->getId()]['lancesTotal'] = array_values($live[$leilao->getId()]['lancesTotal']);
+
+                foreach ($live[$leilao->getId()]['lancesTotal'] as $number => $lance) {
+                    if ($number < 10) {
+                        $live[$leilao->getId()]['lances'][] = $lance;
+                    }
+                }
+
+                if (!$listFull) {
+                    unset($live[$leilao->getId()]['lancesTotal']);
+                }
+            }
+        }
+
+        return $live;
     }
 }

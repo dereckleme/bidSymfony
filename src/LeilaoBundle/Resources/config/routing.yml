@@ -1,7 +1,11 @@
 LeilaoBundle:
-    path:      /leilao/{situation}
+    path:      /leilao/passagens/{situation}
     defaults:  { _controller: LeilaoBundle:Leilao:index, situation:open }
 
 darLanceLeilaoBundle:
-    path:      /darLance/{leilaoId}
+    path:      /leilao/darLance/{leilaoId}
     defaults:  { _controller: LeilaoBundle:Leilao:darLance }
+
+leilaoLive:
+    path:      /leilao/live
+    defaults:  { _controller: LeilaoBundle:Leilao:live }

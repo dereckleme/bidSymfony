@@ -79,9 +79,16 @@ class LeilaoService
         $live = array();
 
         foreach ($leiloes as $leilao) {
+            $passagem = $this->em->getRepository("AppBundle:Passagem")->findOneByLeilao($leilao);
+            $valorEconomia = $passagem->getValor(true) - $leilao->getValorAtual(true);
+            $desconto = 100 - $passagem->getValor(true) / 100 * $leilao->getValorAtual(true);
+
             $live[$leilao->getId()] = array(
                "idLeilao" => $leilao->getId(),
-               "timer"    => $leilao->getTempoleilao()
+               "timer"    => $leilao->getTempoleilao(),
+               "valorAtual" => $leilao->getValorAtual(),
+               "valorEconomia" => number_format($valorEconomia, 2, ',', '.'),
+               "desconto" => floor($desconto)
             );
 
             foreach ($leilao->getLances() as $lance) {

@@ -55,7 +55,7 @@
                             <div class="card-image waves-effect waves-block waves-light">
                                 <div class="materialboxed">
                                     <img width="250" src="http://192.168.255.128/img/rio.jpg">
-                                    <figcaption>Voos para Rio de Janeiro</figcaption>
+                                    <figcaption>{{ passagem.titulo }}</figcaption>
                                 </div>
                             </div>
                             <div class="card-content grey-text">
@@ -74,13 +74,13 @@
                                 <div class="col s8">
                                     <span class="grey-text"> De R$ {{ passagem.valor }} </span>
                                     <br>
-                                    <span class="leilao-home-txt-1 green-text"> Por R$ {{ passagem.leilao.getValorAtual }} </span>
+                                    <span class="leilao-home-txt-1 green-text"> Por R$ <span class="valorAtual">{{ passagem.leilao.getValorAtual }}</span> </span>
                                     <br>
-                                    <span class="grey-text"> Economia de </span><span class="green-text"><b> R$ 450,20 </b></span>
+                                    <span class="grey-text"> Economia de </span><span class="green-text">R$ <b class="valorEconomia">450,20 </b></span>
                                 </div>
                                 <div class="col s2">
                                     <p></p>
-                                    <span class="discount-txt green-text"> <b>68% </b></span>
+                                    <span class="discount-txt green-text"> <b class="desconto">68</b>%</span>
                                     <span class="leilao-home-txt-2 green-text center"> <b>DESCONTO </b></span>
                                 </div>
                             </div>

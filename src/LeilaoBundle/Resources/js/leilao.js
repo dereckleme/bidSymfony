@@ -3,6 +3,7 @@ var BidTravel = BidTravel || {};
 
 BidTravel.Leilao = {
     timer : null,
+    showLances: true,
 
     startTimerDown: function (element) {
         $(element).timer('remove');
@@ -37,10 +38,12 @@ BidTravel.Leilao = {
                 $.each(data, function() {
                     var idLeilao = this.idLeilao;
                     var elementleilao = $("#leilao"+idLeilao);
+                    var valorAtual = this.valorAtual;
+                    var valorEconomia = this.valorEconomia;
+                    var desconto = this.desconto;
 
                     if (this.lances != null) {
                         var elementLances = $('.lancesLeilao', elementleilao);
-                        var elementTimer = $('.timersLeilao', elementleilao);
                         $(elementLances).html('');
                         $.each(this.lances, function() {
                             $(elementLances).append('<p>R$ ' + this.valor + ' - ' + this.usuarioNome + '</p>');
@@ -51,8 +54,13 @@ BidTravel.Leilao = {
                     BidTravel.Leilao.timer = this.timer;
 
                     if (this.timer != null) {
+                        var elementTimer = $('.timersLeilao', elementleilao);
                         BidTravel.Leilao.startTimerDown(elementTimer);
                     }
+
+                    $('.valorAtual', elementleilao).html(valorAtual);
+                    $('.valorEconomia', elementleilao).html(valorEconomia);
+                    $('.desconto', elementleilao).html(desconto);
                 });
             },
             error: function(){

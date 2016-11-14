@@ -256,5 +256,11 @@ class Leilao
     {
         $this->valor_atual = $valor_atual;
     }
+
+    public function getValorEconomia()
+    {
+        $valorAtual = $this->valor_atual;
+
+    }
 }
 

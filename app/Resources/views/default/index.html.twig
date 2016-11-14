@@ -84,107 +84,34 @@
         <div class="box-leilao blue-grey lighten-4">
 
             <!-- Add Swiper slides here! -->
-            <div class="swiper-container">
+            <div class="swiper-container" id="leilaoLive" rel="{{ url('leilaoLive') }}">
 
                 <div class="swiper-wrapper">
-
-                    <div class="swiper-slide">
-                        <figure>
-                            <img class="responsive-img" src="http://198.199.81.70/img/londres.jpg" alt="">
-                            <figcaption>Voos para Londres</figcaption>
-                        </figure>
-                        <div class="box-cronometro-home">
-                            <p class="leilao-home-txt-1">01:04:11</p>
-                            <p class="leilao-home-txt-2">Início :18/02/16 - 16:00:00</p>
+                    {% for passagem in leiloesAbertos %}
+                        <div class="swiper-slide" id="leilao{{ passagem.leilao.id }}">
+                            <figure>
+                                <img class="responsive-img" src="http://198.199.81.70/img/toronto.jpg" alt="">
+                                <figcaption>{{ passagem.titulo }}</figcaption>
+                            </figure>
+                            <div class="box-cronometro-home">
+                                <p class="leilao-home-txt-1 timersLeilao">05:04:06</p>
+                                <p class="leilao-home-txt-2">Início :{{ passagem.leilao.datainicio|date("d/m/Y h:m:s") }}</p>
+                            </div>
+                            <div class="box-button-lance-home">
+                                <p class="leilao-home-txt-3">Por: <span>R$<span class="valorAtual">{{ passagem.leilao.getValorAtual }}</span></span></p>
+                                <p class="leilao-home-txt-4">{% if passagem.leilao.usuario %}
+                                        Usuário: {{ passagem.leilao.usuario.apelido|upper }}
+                                    {% else %}
+                                        Dê seu lance agora!!
+                                    {% endif %}</p>
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <a href="{{ path('darLanceLeilaoBundle', {'leilaoId':passagem.leilao.id}) }}" class="waves-effect red btn darLance">Lance</a>
+                                {% else %}
+                                    <a href="{{ path('fos_user_security_login') }}" class="waves-effect red btn">Logar</a>
+                                {% endif %}
+                            </div>
                         </div>
-                        <div class="box-button-lance-home">
-                            <p class="leilao-home-txt-3">Por: <span>R$2,00</span></p>
-                            <p class="leilao-home-txt-4">ricazavatti</p>
-                            <a class="waves-effect red btn" href="auction.html">Lance</a>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <figure>
-                            <img class="responsive-img" src="http://198.199.81.70/img/rio.jpg" alt="">
-                            <figcaption>Voos para Rio de Janeiro</figcaption>
-                        </figure>
-                        <div class="box-cronometro-home">
-                            <p class="leilao-home-txt-1">03:04:11</p>
-                            <p class="leilao-home-txt-2">Início :18/02/16 - 18:00:00</p>
-                        </div>
-                        <div class="box-button-lance-home">
-                            <p class="leilao-home-txt-3">Por: <span>R$0,25</span></p>
-                            <p class="leilao-home-txt-4">edinhapaula</p>
-                            <a class="waves-effect red btn" href="auction.html">Lance</a>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <figure>
-                            <img class="responsive-img" src="http://198.199.81.70/img/toronto.jpg" alt="">
-                            <figcaption>Voos para Toronto</figcaption>
-                        </figure>
-                        <div class="box-cronometro-home">
-                            <p class="leilao-home-txt-1">05:04:06</p>
-                            <p class="leilao-home-txt-2">Início :18/02/16 - 20:00:00</p>
-                        </div>
-                        <div class="box-button-lance-home">
-                            <p class="leilao-home-txt-3">Por: <span>R$8,00</span></p>
-                            <p class="leilao-home-txt-4">priscillaps</p>
-                            <a class="waves-effect red btn" href="auction.html">Lance</a>
-                        </div>
-                    </div>
-
-
-                    <div class="swiper-slide">
-                        <figure>
-                            <img class="responsive-img" src="http://198.199.81.70/img/londres.jpg" alt="">
-                            <figcaption>Voos para Londres</figcaption>
-                        </figure>
-                        <div class="box-cronometro-home">
-                            <p class="leilao-home-txt-1">01:04:11</p>
-                            <p class="leilao-home-txt-2">Início :18/02/16 - 16:00:00</p>
-                        </div>
-                        <div class="box-button-lance-home">
-                            <p class="leilao-home-txt-3">Por: <span>R$2,00</span></p>
-                            <p class="leilao-home-txt-4">ricazavatti</p>
-                            <a class="waves-effect red btn" href="auction.html">Lance</a>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <figure>
-                            <img class="responsive-img" src="http://198.199.81.70/img/rio.jpg" alt="">
-                            <figcaption>Voos para Rio de Janeiro</figcaption>
-                        </figure>
-                        <div class="box-cronometro-home">
-                            <p class="leilao-home-txt-1">03:04:11</p>
-                            <p class="leilao-home-txt-2">Início :18/02/16 - 18:00:00</p>
-                        </div>
-                        <div class="box-button-lance-home">
-                            <p class="leilao-home-txt-3">Por: <span>R$0,25</span></p>
-                            <p class="leilao-home-txt-4">edinhapaula</p>
-                            <a class="waves-effect red btn" href="auction.html">Lance</a>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <figure>
-                            <img class="responsive-img" src="http://198.199.81.70/img/toronto.jpg" alt="">
-                            <figcaption>Voos para Toronto</figcaption>
-                        </figure>
-                        <div class="box-cronometro-home">
-                            <p class="leilao-home-txt-1">05:04:06</p>
-                            <p class="leilao-home-txt-2">Início :18/02/16 - 20:00:00</p>
-                        </div>
-                        <div class="box-button-lance-home">
-                            <p class="leilao-home-txt-3">Por: <span>R$8,00</span></p>
-                            <p class="leilao-home-txt-4">priscillaps</p>
-                            <a class="waves-effect red btn" href="auction.html">Lance</a>
-                        </div>
-                    </div>
-
+                    {% endfor %}
                 </div>
 
                 <!-- Add Pagination -->
@@ -230,10 +157,12 @@
  {% block javascripts %}
      {% javascripts
      '@AppBundle/Resources/js/jquery-2.1.1.min.js'
+     '@LeilaoBundle/Resources/js/timer.jquery.min.js'
      '@AppBundle/Resources/js/materialize.js'
      '@AppBundle/Resources/js/init.js'
      '@AppBundle/Resources/js/swiper.min.js'
-     '@AppBundle/Resources/js/home.js' %}
+     '@AppBundle/Resources/js/home.js'
+     '@LeilaoBundle/Resources/js/leilao.js'%}
      <script src="{{ asset_url }}"></script>
      {% endjavascripts %}
  {% endblock %}

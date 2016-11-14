@@ -80,7 +80,7 @@ class Passagem
      *
      * @ORM\ManyToOne(targetEntity="Leilao")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="leilao", referencedColumnName="idleilao")
+     *   @ORM\JoinColumn(name="leilao_id", referencedColumnName="idleilao")
      * })
      */
     private $leilao;
@@ -221,8 +221,12 @@ class Passagem
     /**
      * @return mixed
      */
-    public function getValor()
+    public function getValor($forceFloat = false)
     {
+        if ($forceFloat) {
+            return $this->valor;
+        }
+
         return number_format($this->valor, 2, ',', '.');
     }
 

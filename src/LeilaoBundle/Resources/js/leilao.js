@@ -98,7 +98,9 @@ BidTravel.Leilao = {
 }
 
 jQuery(document).ready(function($) {
+    setInterval(function () {
     BidTravel.Leilao.startLiveLeilao();
+    }, 2000);
 
     $(".darLance").on('click', function () {
         BidTravel.Leilao.darLance(this);

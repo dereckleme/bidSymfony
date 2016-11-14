@@ -80,7 +80,7 @@ class Passagem
      *
      * @ORM\ManyToOne(targetEntity="Leilao")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="leilao_id", referencedColumnName="idleilao")
+     *   @ORM\JoinColumn(name="leilao", referencedColumnName="idleilao")
      * })
      */
     private $leilao;

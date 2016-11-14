@@ -94,7 +94,11 @@
                                 <figcaption>{{ passagem.titulo }}</figcaption>
                             </figure>
                             <div class="box-cronometro-home">
-                                <p class="leilao-home-txt-1 timersLeilao">05:04:06</p>
+                                <p class="leilao-home-txt-1 timersLeilao" rel="{% if passagem.leilao.leilaoEstaAberto %}
+                                                    {{ passagem.leilao.tempoleilao }}
+                                                {% endif %}">{% if passagem.leilao.leilaoEstaAberto == false %}
+                                        Aproveite!
+                                    {% endif %}</p>
                                 <p class="leilao-home-txt-2">Início :{{ passagem.leilao.datainicio|date("d/m/Y h:m:s") }}</p>
                             </div>
                             <div class="box-button-lance-home">

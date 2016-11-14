@@ -1,16 +1,36 @@
-/app/config/parameters.yml
-/build/
-/phpunit.xml
-/var/*
-!/var/cache
-/var/cache/*
-!var/cache/.gitkeep
-!/var/logs
-/var/logs/*
-!var/logs/.gitkeep
-!/var/sessions
-/var/sessions/*
-!var/sessions/.gitkeep
-!var/SymfonyRequirements.php
-/web/bundles/
-/vendor/
+# System
+*._*
+.*DS_Store
+.AppleDouble/
+:2eDS_Store
+
+# Application
+build/*
+web/.htaccess
+web/pa/.htaccess
+web/email_templates/*
+web/img/customers/*
+.gitmodules
+
+vendor/*
+
+# Symfony directories
+*/logs/*
+*/cache/*
+web/uploads/*
+web/bundles/*
+web/css/*
+web/js/*
+
+# Configuration files
+app/config/parameters.ini
+app/config/parameters.yml
+
+# IDE's
+.buildpath
+.project
+.settings/*
+.project/*
+*.sublime-*
+*nbproject*
+.idea/*

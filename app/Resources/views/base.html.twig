@@ -79,8 +79,19 @@
             <li><a href="{{ url('LeilaoBundle') }}">Leilão</a></li>
             <li><a href="{{ url('AppBundleCupons') }}">Cupons</a></li>
             <li><a href="{{ url('AppBundleSocial') }}">Social</a></li>
-            <li><a href="register.html">Cadastro</a></li>
-            <li><a href="login.html">Entrar</a></li>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <li><a href="{{ path('AppBundleUsuarioHome') }}">
+                        {{ 'Minha Conta'|trans({}, 'AppBundleUsuarioHome') }}
+                    </a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">
+                        {{ 'Sair'|trans({}, 'FOSUserBundle') }}
+                    </a></li>
+                <li><a href="#">Olá {{ app.user.username }}</a></li>
+            {% else %}
+                <li><a href="{{ path('fos_user_registration_register') }}">Cadastro</a></li>
+                <li><a href="{{ path('fos_user_security_login') }}">{{ 'Entrar'|trans({}, 'FOSUserBundle') }}</a></li>
+                <li><a href="#">06 de Abr 2016 18:52:22</a></li>
+            {% endif %}
         </ul>
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>

@@ -103,7 +103,7 @@
                                                 {% if passagem.leilao.leilaoEstaAberto == false %}
                                                     Aproveite!
                                                 {% else %}
-                                                    00:00:00
+                                                    {{ passagem.leilao.tempoleilao }}
                                                 {% endif %}
                                             </p>
                                         </div>

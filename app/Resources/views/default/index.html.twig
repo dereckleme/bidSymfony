@@ -99,7 +99,7 @@
                                                 {% endif %}">{% if passagem.leilao.leilaoEstaAberto == false %}
                                         Aproveite!
                                         {% else %}
-                                        00:00:00
+                                            {{ passagem.leilao.tempoleilao }}
                                     {% endif %}</p>
                                 <p class="leilao-home-txt-2">Início :{{ passagem.leilao.datainicio|date("d/m/Y h:m:s") }}</p>
                             </div>

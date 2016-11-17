@@ -97,7 +97,8 @@ BidTravel.Leilao = {
     }
 }
 
-$(function() {
+$(document).ready(function() {
+    BidTravel.Leilao.startLiveLeilao();
     setInterval(function () {
     BidTravel.Leilao.startLiveLeilao();
     }, 2000);

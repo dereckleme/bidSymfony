@@ -10,3 +10,30 @@ doctrine:
 assetic:
     debug           : false
     use_controller  : false
+    assets:
+                    Roboto-Thin:
+                        inputs:
+                            - 'fonts_disponiveis/roboto/Roboto-Thin.woff2'
+                        output: fonts/roboto/Roboto-Thin.woff2
+                    Roboto-Thin1:
+                        inputs:
+                            - 'fonts_disponiveis/roboto/Roboto-Medium.woff2'
+                        output: fonts/roboto/Roboto-Medium.woff2
+
+                    Roboto-Thin2:
+                        inputs:
+                            - 'fonts_disponiveis/roboto/Roboto-Light.woff2'
+                        output: fonts/roboto/Roboto-Light.woff2
+                    Roboto-Thin3:
+                        inputs:
+                            - 'fonts_disponiveis/roboto/Roboto-Regular.woff2'
+                        output: fonts/roboto/Roboto-Regular.woff2
+                    Roboto-Thin4:
+                        inputs:
+                            - 'fonts_disponiveis/roboto/Roboto-Bold.woff2'
+                        output: fonts/roboto/Roboto-Bold.woff2
+
+                    Roboto-Thin5:
+                        inputs:
+                            - 'fonts_disponiveis/fontawesome-webfont.woff'
+                        output: fonts/fontawesome-webfont.woff

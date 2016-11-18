@@ -144,6 +144,15 @@ class UsuarioController extends Controller
 
         $form->handleRequest($request);
 
+        $data = $form->getValues();
+
+        if ($data['dataNascimento']) {
+            if (!validateDate('30/02/2012', 'dd/mm/yyyy')) {
+                var_dump("aew");
+            }
+        }
+        die;
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($cadastro);

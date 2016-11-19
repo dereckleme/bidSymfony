@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class LeilaoType extends AbstractType
 {
@@ -15,9 +16,11 @@ class LeilaoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('datainicio', 'datetime')
-            ->add('tempoleilao', 'datetime')
-        ;
+            ->add('datainicio', DateTimeType::class, array(
+                'placeholder' => 'Select a value'
+            ))
+            ->add('qtdMinimaLances')
+            ->add('valorAtual');
     }
     
     /**

@@ -4,58 +4,24 @@
     <!-- ##### Slider Topo ##### -->
     <div class="slider">
         <ul class="slides">
-
-            <li>
-                <img src="http://198.199.81.70/img/rio.jpg" alt="rio"> <!-- random image -->
-                <div class="caption center-align">
-                    <div class="col s12 m6">
-                        <div class="card">
-                            <div class="card-content">
-                                <span class="card-title">Rio de Janeiro</span>
-                                <p>Passagem São Paulo - Rio de Janeiro Voo Direto - Ida e Volta</p>
-                            </div>
-                            <div class="card-action">
-                                <a class="waves-effect green darken-3 btn" href="auction.html">Hoje | 20h</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-
-            <li>
-                <img src="http://198.199.81.70/img/toronto.jpg" alt="Toronto"> <!-- random image -->
-                <div class="caption center-align">
-                    <div class="col s12 m6">
-                        <div class="card">
-                            <div class="card-content">
-                                <span class="card-title">Nova York</span>
-                                <p>Passagem Nova York - São Paulo Voo Direto - Ida e Volta</p>
-                            </div>
-                            <div class="card-action">
-                                <a class="waves-effect green darken-3 btn" href="auction.html">Hoje | 20h</a>
+            {% for imagem in imagens %}
+                <li>
+                    <img src="{{ asset('uploads/imagens/' ~ imagem.src) }}" alt="rio"> <!-- random image -->
+                    <div class="caption center-align">
+                        <div class="col s12 m6">
+                            <div class="card">
+                                <div class="card-content">
+                                    <span class="card-title">{{ imagem.passagem.titulo }}</span>
+                                    <p>{{ imagem.passagem.descricao }}</p>
+                                </div>
+                                <div class="card-action">
+                                    <a class="waves-effect green darken-3 btn" href="auction.html">Hoje | 20h</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </li>
-
-            <li>
-                <img src="http://198.199.81.70/img/londres.jpg" alt="Londres"> <!-- random image -->
-                <div class="caption center-align">
-                    <div class="col s12 m6">
-                        <div class="card">
-                            <div class="card-content">
-                                <span class="card-title">Toronto</span>
-                                <p>Passagem Toront - São Paulo Voo Direto - Ida e Volta</p>
-                            </div>
-                            <div class="card-action">
-                                <a class="waves-effect green darken-3 btn" href="auction.html">Hoje | 20h</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-
+                </li>
+            {% endfor %}
         </ul>
     </div>
     <!-- ##### Slider Topo ##### -->
@@ -90,7 +56,7 @@
                     {% for passagem in leiloesAbertos %}
                         <div class="swiper-slide" id="leilao{{ passagem.leilao.id }}">
                             <figure>
-                                <img class="responsive-img" src="http://198.199.81.70/img/toronto.jpg" alt="">
+                                <img class="responsive-img" src="{{ asset('uploads/imagens/' ~ passagem.imagem) }}" alt="">
                                 <figcaption>{{ passagem.titulo }}</figcaption>
                             </figure>
                             <div class="box-cronometro-home">

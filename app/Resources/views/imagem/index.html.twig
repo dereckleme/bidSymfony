@@ -1,0 +1,39 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block body %}
+    <h1>Imagem list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idimagem</th>
+                <th>Src</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for imagem in imagems %}
+            <tr>
+                <td><a href="{{ path('admin_imagem_show', { 'id': imagem.id }) }}">{{ imagem.id }}</a></td>
+                <td>{{ imagem.src }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('admin_imagem_show', { 'id': imagem.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('admin_imagem_edit', { 'id': imagem.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_imagem_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

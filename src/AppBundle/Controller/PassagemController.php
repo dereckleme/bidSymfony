@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Passagem;
 use AppBundle\Form\PassagemType;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Passagem controller.
@@ -83,12 +84,27 @@ class PassagemController extends Controller
      */
     public function editAction(Request $request, Passagem $passagem)
     {
+        if ($passagem->getImagem()) {
+            $passagem->setImagem(
+                new File($this->getParameter('imagem_directory').'/'.$passagem->getImagem())
+            );
+        }
+
         $deleteForm = $this->createDeleteForm($passagem);
         $editForm = $this->createForm('AppBundle\Form\PassagemType', $passagem);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $file = $passagem->getImagem();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            $file->move(
+                $this->getParameter('imagem_directory'),
+                $fileName
+            );
+
+            $passagem->setImagem($fileName);
             $em->persist($passagem);
             $em->flush();
 

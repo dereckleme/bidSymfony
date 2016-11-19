@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Passagem
@@ -89,6 +90,14 @@ class Passagem
      * @ORM\Column(name="valor", type="float", scale=2)
      */
     protected $valor;
+
+    /**
+     * @ORM\Column(name="imagem", type="string")
+     *
+     * @Assert\NotBlank(message="faça upload de arquivos jpg")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
+    private $imagem;
 
     /**
      * @return int
@@ -236,6 +245,22 @@ class Passagem
     public function setValor($valor)
     {
         $this->valor = $valor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImagem()
+    {
+        return $this->imagem;
+    }
+
+    /**
+     * @param mixed $imagem
+     */
+    public function setImagem($imagem)
+    {
+        $this->imagem = $imagem;
     }
 }
 

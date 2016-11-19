@@ -1,3 +1,11 @@
+app_imagem:
+    resource: "@AppBundle/Controller/ImagemController.php"
+    type:     annotation
+
+app_imagem:
+    resource: "@AppBundle/Controller/ImagemController.php"
+    type:     annotation
+
 app_leilao:
     resource: "@AppBundle/Controller/LeilaoController.php"
     type:     annotation

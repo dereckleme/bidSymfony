@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class PassagemType extends AbstractType
 {
@@ -57,7 +58,18 @@ class PassagemType extends AbstractType
                     },
                     'choice_label' => 'nome',
                 ))
-            ->add('leilao')
+            ->add('leilao',
+                EntityType::class,
+                array(
+                    'class' => 'AppBundle\Entity\Leilao',
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('u');
+                    },
+                    'choice_label' => 'id',
+                ))
+            ->add('imagem', FileType::class, array(
+                'label' => 'Imagem da passagem'
+            ))
         ;
     }
     

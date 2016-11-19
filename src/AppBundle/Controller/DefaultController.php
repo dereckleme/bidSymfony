@@ -11,14 +11,16 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
+        $em = $this->get('doctrine.orm.entity_manager');
         $serviceLeilao = $this->get("leilao.Service");
 
         $leiloesAbertos = $serviceLeilao->getList(Leilao::ABERTO);
-
+        $imagensDestaque = $em->getRepository("AppBundle:Imagem")->findAll();
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
             'leiloesAbertos' => $leiloesAbertos,
+            'imagens' => $imagensDestaque
         ]);
     }
 

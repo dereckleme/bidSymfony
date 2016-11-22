@@ -92,3 +92,7 @@ AppBundleDuvidas:
 AppBundleContato:
     path:      /contato
     defaults:  { _controller: AppBundle:Default:contato }
+
+AppBundleTermosCondicoes:
+    path:      /TermosCondicoes
+    defaults:  { _controller: AppBundle:Default:termosCondicoes }

@@ -79,4 +79,12 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
         ]);
     }
+
+    public function termosCondicoesAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/termos_condicoes.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
+        ]);
+    }
 }

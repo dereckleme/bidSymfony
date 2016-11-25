@@ -1,5 +1,37 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    aew
+   <div class="container">
+   <div class="row">
+      <div class ="titles-box" >
+        <h1 class = "titles-top">Conhece a Bid Travel?</h1>
+        <h3 class = "titles-bottom">Veja quem somos!</h3>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+          <div class="card-panel">
+            <div class="card-content">
+                   <p class="flow-text">Lançado em 2016 o BidTravel.com.br é um clube de ofertas que possui parceria com os maiores companhias aéreas do país. Disponibilizamos produtos para você unir suas compras à curtição.</p>
+                    <p class="flow-text">Somos apaixonados por tecnologia, e estamos em constante melhoria para transformarmos o nosso site em uma comunidade que faça você ter a mais completa experiência. Pensando nisso, acrescentamos mais um canal de benefícios no BidTravel.com.br, onde oferecemos Cupons de descontos variados, no intuito de ser o site de sua escolha na hora de economizar em diversos tipos de compras.</p>
+                    <p class="flow-text">Nossa filosofia é prezar sempre o RESPEITO, a SEGURANÇA e o COMPROMISSO com um grande toque de diversão!</p>
+                    <h4>Sua satisfação para a gente é coisa séria!</h4>
+                    <figure>
+                      <img class="responsive-img" src="img/jatobidtravel.jpg" alt="">
+                    </figure>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div> 
+{% endblock %}
+{% block javascripts %}
+    {% javascripts
+    '@AppBundle/Resources/js/jquery-2.1.1.min.js'
+    '@AppBundle/Resources/js/materialize.js'
+    '@AppBundle/Resources/js/init.js'
+    '@AppBundle/Resources/js/swiper.min.js'
+    '@AppBundle/Resources/js/como-funciona.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

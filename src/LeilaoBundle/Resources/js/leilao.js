@@ -54,9 +54,13 @@ BidTravel.Leilao = {
 
                     BidTravel.Leilao.timer = this.timer;
 
-                    if (this.timer != null) {
+                    if (this.timer != null && this.timer != 'encerrado') {
                         var elementTimer = $('.timersLeilao', elementleilao);
                         BidTravel.Leilao.startTimerDown(elementTimer);
+                    } else if (this.timer == 'encerrado') {
+                        $('.timersLeilao', elementleilao).fadeOut();
+                        $('.timersLeilao', elementleilao).html("leilao encerrado!");
+                        $('.timersLeilao', elementleilao).fadeIn();
                     }
 
                     $('.valorAtual', elementleilao).html(valorAtual);

@@ -135,7 +135,7 @@ class Leilao
         if (!$diferenca->invert) {
             return $diferenca->format('%Hh%Im%Ss');
         } else {
-            return null;
+            return "encerrado";
         }
     }
 

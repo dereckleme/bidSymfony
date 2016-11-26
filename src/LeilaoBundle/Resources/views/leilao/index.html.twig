@@ -109,10 +109,10 @@
                                         </div>
                                     </li>
                                 </ul>
-                                <div class="col s6">
+                                <div class="col s6 linhaLance">
                                     <span class="grey-text"> Dê seu lance </span>
                                 </div>
-                                <div class="col s6">
+                                <div class="col s6 linhaLance">
                                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                         <a href="{{ path('darLanceLeilaoBundle', {'leilaoId':passagem.leilao.id}) }}" class="waves-effect red btn darLance">Lance</a>
                                     {% else %}

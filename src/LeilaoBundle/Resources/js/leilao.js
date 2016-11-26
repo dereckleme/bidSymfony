@@ -61,6 +61,7 @@ BidTravel.Leilao = {
                         $('.timersLeilao', elementleilao).fadeOut();
                         $('.timersLeilao', elementleilao).html("leilao encerrado!");
                         $('.timersLeilao', elementleilao).fadeIn();
+                        $('.linhaLance, .darLance', elementleilao).css("display", "none");
                     }
 
                     $('.valorAtual', elementleilao).html(valorAtual);

@@ -49,13 +49,14 @@ class LeilaoService
     public function darLance($leilaoId, Usuario $usuario)
     {
         $leilaoRepository = $this->em->getRepository('AppBundle:Leilao');
-        $leilao = $leilaoRepository->find($leilaoId);
-        $saldo = $usuario->getSaldoLances();
-        $leilaoValorAtualUpdated = $leilao->getValorAtual(true) + 0.01;
+        $leilao = $leilaoRepository->findOneBy(array("id" => $leilaoId, "situacao" => null));
 
         if (!$leilao) {
             throw new \Exception("Leilão não encontrado");
         }
+
+        $saldo = $usuario->getSaldoLances();
+        $leilaoValorAtualUpdated = $leilao->getValorAtual(true) + 0.01;
 
         $leilao->setUsuario($usuario);
         $leilao->setValorAtual($leilaoValorAtualUpdated);

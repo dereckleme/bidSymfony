@@ -1,4 +1,4 @@
 services:
     leilao.Service:
         class: LeilaoBundle\Service\LeilaoService
-        arguments: ["@doctrine.orm.entity_manager"]
+        arguments: ["@doctrine.orm.entity_manager", "@logger", "@usuario.Service"]

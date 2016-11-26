@@ -138,19 +138,20 @@
             <div id="next" class="col s12">
                 <!--Proxímos Leilões-->
                 <div class="row">
+                    {% for passagem in proximosLeiloes %}
                     <div class="col l4 s12">
                         <div class="card">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <div class="materialboxed">
-                                    <img width="250" src="http://198.199.81.70/img/rio.jpg">
-                                    <figcaption>Voos para Rio de Janeiro</figcaption>
+                                    <img width="250" src="{{ asset('uploads/imagens/' ~ passagem.imagem) }}">
+                                    <figcaption>{{ passagem.titulo }}</figcaption>
                                 </div>
                             </div>
                             <div class= "row">
                                 <div class="col s12">
                                     <div class="box-cronometro-home grey lighten-2 center">
-                                        <p class="leilao-home-txt-1">02:00</p>
-                                        <p class="leilao-home-txt-2">Previsão início: 30/12/16</p>
+                                        <p class="leilao-home-txt-1">{{ passagem.leilao.datainicio|date("h:m") }}</p>
+                                        <p class="leilao-home-txt-2">Previsão início: {{ passagem.leilao.datainicio|date("d/m/Y") }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -163,81 +164,37 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col l4 s12">
-                        <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <div class="materialboxed">
-                                    <img width="250" src="http://198.199.81.70/img/londres.jpg">
-                                    <figcaption>Voos para Londres</figcaption>
-                                </div>
-                            </div>
-                            <div class= "row">
-                                <div class="col s12">
-                                    <div class="box-cronometro-home grey lighten-2 center">
-                                        <p class="leilao-home-txt-1">02:00</p>
-                                        <p class="leilao-home-txt-2">Previsão início: 18/02/16</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-content grey-text">
-                                <i class="fa fa-facebook-square fa-2x"></i>
-                                <i class="fa fa-google-plus-square fa-2x "></i>
-                                <i class="fa fa-twitter-square fa-2x "></i>
-                                <i class="fa fa-instagram fa-2x "></i>
-                                <button class="btn-floating waves-effect waves-light grey right" type="submit" ><i class="material-icons left">grade</i>Acompanhe</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l4 s12">
-                        <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <div class="materialboxed">
-                                    <img width="300" src="http://198.199.81.70/img/hotel-02.jpg">
-                                    <figcaption>Voos para Singapura</figcaption>
-                                </div>
-                            </div>
-                            <div class= "row">
-                                <div class="col s12">
-                                    <div class="box-cronometro-home grey lighten-2 center">
-                                        <p class="leilao-home-txt-1">02:00</p>
-                                        <p class="leilao-home-txt-2">Previsão início: 18/02/16</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-content grey-text">
-                                <i class="fa fa-facebook-square fa-2x"></i>
-                                <i class="fa fa-google-plus-square fa-2x "></i>
-                                <i class="fa fa-twitter-square fa-2x "></i>
-                                <i class="fa fa-instagram fa-2x "></i>
-                                <button class="btn-floating waves-effect waves-light grey right" type="submit" ><i class="material-icons left yellow-text">grade</i>Acompanhe</button>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div id="close" class="col s12">
                 <!--Leilões Encerrados-->
                 <div class="row">
+                    {% for passagem in fechadosLeiloes %}
                     <div class="col l4 s12">
                         <div class="card">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <div class="materialboxed">
-                                    <img width="250" src="http://198.199.81.70/img/rio.jpg">
-                                    <figcaption>Voos para Rio de Janeiro</figcaption>
+                                    <img width="250" src="{{ asset('uploads/imagens/' ~ passagem.imagem) }}">
+                                    <figcaption>{{ passagem.titulo }}</figcaption>
                                 </div>
                             </div>
                             <div class= "row">
                                 <div class="col s12">
                                     <div class="box-cronometro-home grey lighten-2 center">
-                                        <p class="leilao-home-txt-1">99% OFF</p>
+                                        <p class="leilao-home-txt-1">{{ passagem.desconto }}% OFF</p>
                                         <p class="leilao-home-txt-2">Término: 18/02/16 - 15:00:37</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <h5 class="red-text center"> <b> Por: R$ 13,80 </b></h5>
-                            <h6 class="grey-text center">  acabanozero </h6>
-                            <h6 class="grey-text center"> Arrematado com 74 lances</h6>
+                            <h5 class="red-text center"> <b> Por: R$ {{ passagem.leilao.getValorAtual }} </b></h5>
+                            <h6 class="grey-text center">  {% if passagem.leilao.usuario %}
+                                    {{ passagem.leilao.usuario.apelido|upper }}
+                                {% endif %} </h6>
+                            <h6 class="grey-text center"> Arrematado com {{
+                                passagem.leilao.lances|length
+                                }} lances</h6>
 
                             <div class="card-content grey-text">
                                 <i class="fa fa-facebook-square fa-2x"></i>
@@ -248,66 +205,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col l4 s12">
-                        <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <div class="materialboxed">
-                                    <img width="250" src="http://198.199.81.70/img/londres.jpg">
-                                    <figcaption>Voos para Londres</figcaption>
-                                </div>
-                            </div>
-                            <div class= "row">
-                                <div class="col s12">
-                                    <div class="box-cronometro-home grey lighten-2 center">
-                                        <p class="leilao-home-txt-1">97% OFF</p>
-                                        <p class="leilao-home-txt-2">Término: 18/02/16 - 15:00:37</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h5 class="red-text center"> <b> Por: R$ 13,80 </b></h5>
-                            <h6 class="grey-text center">  acabanozero </h6>
-                            <h6 class="grey-text center"> Arrematado com 74 lances</h6>
-
-                            <div class="card-content grey-text">
-                                <i class="fa fa-facebook-square fa-2x"></i>
-                                <i class="fa fa-google-plus-square fa-2x "></i>
-                                <i class="fa fa-twitter-square fa-2x "></i>
-                                <i class="fa fa-instagram fa-2x "></i>
-                                <button class="btn-floating waves-effect waves-light grey right" type="submit" ><i class="material-icons left">grade</i>Acompanhe</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l4 s12">
-                        <div class="card">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <div class="materialboxed">
-                                    <img width="250" src="http://198.199.81.70/img/hotel-02.jpg">
-                                    <figcaption>Voos para Singapura</figcaption>
-                                </div>
-                            </div>
-                            <div class= "row">
-                                <div class="col s12">
-                                    <div class="box-cronometro-home grey lighten-2 center">
-                                        <p class="leilao-home-txt-1">89% OFF</p>
-                                        <p class="leilao-home-txt-2">Término: 18/02/16 - 15:00:37</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h5 class="red-text center"> <b> Por: R$ 13,80 </b></h5>
-                            <h6 class="grey-text center">  acabanozero </h6>
-                            <h6 class="grey-text center"> Arrematado com 74 lances</h6>
-
-                            <div class="card-content grey-text">
-                                <i class="fa fa-facebook-square fa-2x"></i>
-                                <i class="fa fa-google-plus-square fa-2x "></i>
-                                <i class="fa fa-twitter-square fa-2x "></i>
-                                <i class="fa fa-instagram fa-2x "></i>
-                                <button class="btn-floating waves-effect waves-light grey right" type="submit" ><i class="material-icons left">grade</i>Acompanhe</button>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

@@ -19,4 +19,17 @@ class LeilaoRepository extends EntityRepository
 
         return $result;
     }
+
+    public function getLeiloesVencidos()
+    {
+        $qb = $this->createQueryBuilder('leilao');
+        $qb->where("leilao.tempoleilao < :now")
+            ->andWhere("leilao.situacao IS NULL")
+            ->setParameter('now', new \DateTime('now'));
+
+        $result = $qb->getQuery()
+            ->getResult();
+
+        return $result;
+    }
 }

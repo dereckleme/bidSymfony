@@ -9,8 +9,10 @@
 namespace LeilaoBundle\Service;
 use AppBundle\Entity\LeilaoLances;
 use AppBundle\Entity\Usuario;
+use AppBundle\Service\UsuarioService;
 use Doctrine\ORM\EntityManager;
 use AppBundle\Entity\Leilao;
+use Monolog\Logger;
 
 class LeilaoService
 {
@@ -19,16 +21,22 @@ class LeilaoService
     /**
      * Doctrine Entity Manager
      *
-     * @var Doctrine\ORM\EntityManager
+     * @var \Doctrine\ORM\EntityManager
      */
     private $em;
+
+    protected $logger;
+
+    protected $usuarioService;
 
     /**
      * Construtor Service Container
      */
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManager $em, Logger $logger, UsuarioService $usuarioService)
     {
         $this->em = $em;
+        $this->logger = $logger;
+        $this->usuarioService = $usuarioService;
     }
 
     public function getList($situation)
@@ -118,5 +126,27 @@ class LeilaoService
         }
 
         return $live;
+    }
+
+    public function getLeiloesAbertosVencidos()
+    {
+        $repository = $this->em->getRepository("AppBundle:Leilao");
+        $leiloesVencidos = $repository->getLeiloesVencidos();
+
+        return $leiloesVencidos;
+    }
+
+    public function fecharLeiloes(array $leiloes)
+    {
+        /**
+         * @var $leilao Leilao
+         */
+        foreach ($leiloes as $leilao) {
+            $leilao->setSituacao(Leilao::FECHADO);
+            $this->logger->addDebug("Alterando status do leilão nesse momento #idLeilao{$leilao->getId()}");
+            $this->em->flush($leilao);
+            $this->usuarioService->sendEmailGanhador($leilao->getUsuario());
+            $this->logger->addDebug("Enviado email para o usuário{$leilao->getUsuario()->getEmail()}");
+        }
     }
 }

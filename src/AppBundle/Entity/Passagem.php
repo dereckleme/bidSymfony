@@ -262,5 +262,12 @@ class Passagem
     {
         $this->imagem = $imagem;
     }
+
+    public function getDesconto()
+    {
+        $desconto = 100 - $this->getValor(true) / 100 * $this->getLeilao()->getValorAtual(true);
+
+        return floor($desconto);
+    }
 }
 

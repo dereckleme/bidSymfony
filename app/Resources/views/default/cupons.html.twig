@@ -28,7 +28,7 @@
                   <span class="card-title">Mon Port Hotel & Spa</span>
                   <p> Cala d'Egos, Finca La Noria, 07157 Port d'Andratx - Majorca, Spain</p>
                 </div>
-                
+
               </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                   <span class="card-title">AUSTIN ROOFTOP POOL</span>
                   <p>700 SAN JACINTO AT 8TH STREET - AUSTIN, TEXAS 78701</p>
                 </div>
-                
+
               </div>
             </div>
         </div>
@@ -97,10 +97,10 @@
       <i class="material-icons prefix">search</i>
       <input type="text" id="autocomplete">
       <label for="autocomplete">Pesquisar por hotel ou cidade no site</label>
-    </div>   
+    </div>
     <div class="input-field col l3 m2 s4">
       <a href="#!" class="btn btn-large waves-effect waves-light green darken-3">Buscar</a>
-    </div>    
+    </div>
   </div>
  </div>
 </div>
@@ -110,7 +110,7 @@
 <div class="container">
     <div class="row center">
       <div class="col l3 m6 s12">
-        <div class="card">    
+        <div class="card">
           <div class="card-image waves-effect waves-block waves-light">
             <div class="grid-example col s12 red"><span class="white-text">10% Desconto</span></div>
             <img class="activator" src="img/hotel-01.jpg">
@@ -140,7 +140,7 @@
         </div>
       </div>
       <div class="col l3 m6 s12">
-        <div class="card">    
+        <div class="card">
           <div class="card-image waves-effect waves-block waves-light">
             <div class="grid-example col s12 red"><span class="white-text">10% Desconto</span></div>
             <img class="activator" src="img/hotel-01.jpg">
@@ -170,7 +170,7 @@
         </div>
       </div>
       <div class="col l3 m6 s12">
-        <div class="card">    
+        <div class="card">
           <div class="card-image waves-effect waves-block waves-light">
             <div class="grid-example col s12 red"><span class="white-text">10% Desconto</span></div>
             <img class="activator" src="img/hotel-02.jpg">
@@ -200,7 +200,7 @@
         </div>
       </div>
       <div class="col l3 m6 s12">
-        <div class="card">    
+        <div class="card">
           <div class="card-image waves-effect waves-block waves-light">
             <div class="grid-example col s12 red"><span class="white-text">10% Desconto</span></div>
             <img class="activator" src="img/hotel-02.jpg">
@@ -231,4 +231,14 @@
       </div>
     </div>
 </div>
+{% endblock %}
+{% block javascripts %}
+    {% javascripts
+    '@AppBundle/Resources/js/jquery-2.1.1.min.js'
+    '@AppBundle/Resources/js/materialize.js'
+    '@AppBundle/Resources/js/init.js'
+    '@AppBundle/Resources/js/swiper.min.js'
+    '@AppBundle/Resources/js/como-funciona.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

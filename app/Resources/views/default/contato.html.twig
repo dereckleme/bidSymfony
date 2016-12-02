@@ -52,7 +52,7 @@
                                           <label for="message">Message</label>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="row">
                                         <div class="input-field col s12">
                                           <label>Como você nos encontrou?</label>
@@ -109,5 +109,15 @@
             </div>
         </div>
     </div>
-  </div> 
+  </div>
+{% endblock %}
+{% block javascripts %}
+    {% javascripts
+    '@AppBundle/Resources/js/jquery-2.1.1.min.js'
+    '@AppBundle/Resources/js/materialize.js'
+    '@AppBundle/Resources/js/init.js'
+    '@AppBundle/Resources/js/swiper.min.js'
+    '@AppBundle/Resources/js/como-funciona.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

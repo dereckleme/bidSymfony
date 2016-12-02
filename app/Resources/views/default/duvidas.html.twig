@@ -31,7 +31,7 @@
                       O número de lances é ilimitado por leilão.
                       O primeiro LANCE que o usuário der será o LANCE de habilitação da sua participação ao leilão, ele deverá ser dado antes que o CRONOMETRO REGRESSIVO seja iniciado, assim como os demais lances este também será descontado do seu saldo de lances disponíveis. Após o inicio da contagem regressiva somente os usuários habilitados poderão participar do leilão.
                       Cada LANCE dado incrementa o VALOR DO PRODUTO em R$ 0,01 (Um Centavo).
-                      Se você for o último usuário a dar lance e o cronômetro concluir a contagem, você será o ganhador da passagem aérea do leilão. Mas se outros usuários derem lances depois de você, à contagem regressiva reiniciará. 
+                      Se você for o último usuário a dar lance e o cronômetro concluir a contagem, você será o ganhador da passagem aérea do leilão. Mas se outros usuários derem lances depois de você, à contagem regressiva reiniciará.
                       Características das passagens aéreas
                       A passagem aérea será sempre de ida e volta e sem escalas ou conexões até o destino escolhido.
                       Com exceção dos destinos que não possuem voos diretos.
@@ -60,20 +60,20 @@
                   </li>
                   <li>
                     <div class="collapsible-header"><i class="material-icons green-text text-darken-3">info</i>Como visualizar o meu saldo de lances? </div>
-                    <div class="collapsible-body"><p>Para visualizar o seu saldo de lances, você deverá fazer o login na BidTravel.com.br, clicar no seu nome de usuário, em seguida em “Histórico de Lances”. 
+                    <div class="collapsible-body"><p>Para visualizar o seu saldo de lances, você deverá fazer o login na BidTravel.com.br, clicar no seu nome de usuário, em seguida em “Histórico de Lances”.
 					Esta opção mostrará todas as informações dos lances adquiridos, data, quantidade, forma de aquisição, entre outras, e também a quantidade de lances já dados nos leilões que você participou, no final mostrará o seu saldo de lances disponível.
 					</p></div>
                   </li>
                   <li>
                     <div class="collapsible-header"><i class="material-icons green-text text-darken-3">info</i>Como saber informações de lances dados em um determinado leilão?</div>
                     <div class="collapsible-body"><p>Você precisará estar logado no site BidTravel.com.br, em seguida clicar na opção “Meus Arremates”.
-					Neste momento serão demonstrados todos os lances dados para um determinado leilão e se você foi o vencedor ou não. 
-					Onde posso acompanhar as minhas passagens aéreas adquiridas? 
+					Neste momento serão demonstrados todos os lances dados para um determinado leilão e se você foi o vencedor ou não.
+					Onde posso acompanhar as minhas passagens aéreas adquiridas?
 					Para verificar as aquisições que você efetuou, basta fazer o login, clicar no seu nome de usuário e clicar no link “Meus Produtos”.</p></div>
                   </li>
                   <li>
                     <div class="collapsible-header"><i class="material-icons green-text text-darken-3">info</i>Como encerrar a minha conta? </div>
-                    <div class="collapsible-body"><p>Você deverá fazer o login na BidTravel.com.br, clicar no seu nome de usuário, em seguida em “Encerrar Conta”. 
+                    <div class="collapsible-body"><p>Você deverá fazer o login na BidTravel.com.br, clicar no seu nome de usuário, em seguida em “Encerrar Conta”.
 					Outra forma de encerrar sua conta é enviando um e-mail para sac@bidtravel.com.br, informando os seguintes dados: E-mail de cadastro / Usuário / CPF.
 					Pedimos que informe o motivo de seu cancelamento para que fique registrado em nosso sistema.</p></div>
                   </li>
@@ -83,7 +83,7 @@
                   </li>
                   <li>
                     <div class="collapsible-header"><i class="material-icons green-text text-darken-3">info</i>Como pagar por minha passagem aérea? </div>
-                    <div class="collapsible-body"><p>Se você participou de um leilão e foi um dos 10 usuários que mais lances deram então você poderá comprar a passagem aérea que estava sendo leiloada com desconto. 
+                    <div class="collapsible-body"><p>Se você participou de um leilão e foi um dos 10 usuários que mais lances deram então você poderá comprar a passagem aérea que estava sendo leiloada com desconto.
                     Você irá receber um e-mail com a oferta da passagem aérea, deverá clicar no link enviado no e-mail. Você será redirecionado ao site da BidTravel.com.br onde estará disponível todas as formas de pagamento.
                     O prazo para a realização do pagamento é de até 24 horas. Após o vencimento do prazo, a oferta irá expirar de sua conta. Caso tenha dificuldades para realizar o pagamento, entre em contato conosco pelo SAC através do e-mail: sac@bidtravel.com.br.</p></div>
                   </li>
@@ -126,5 +126,15 @@
             </div>
         </div>
     </div>
-  </div> 
+  </div>
+{% endblock %}
+{% block javascripts %}
+    {% javascripts
+    '@AppBundle/Resources/js/jquery-2.1.1.min.js'
+    '@AppBundle/Resources/js/materialize.js'
+    '@AppBundle/Resources/js/init.js'
+    '@AppBundle/Resources/js/swiper.min.js'
+    '@AppBundle/Resources/js/como-funciona.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

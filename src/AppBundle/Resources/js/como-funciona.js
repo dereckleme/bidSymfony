@@ -8,6 +8,9 @@ $(document).ready(function(){
     // Chamada select destinos
     $('select').material_select();
 
+    $('#highlight_0').css({"border":"3px solid #ff4242"});
+    $('#idInfo_0_detail').show(); 
+
 
     $('#highlight_0').hover(
         function () {
@@ -65,15 +68,4 @@ $(document).ready(function(){
             $('#idInfo_4_detail').hide();
         }
     );
-
-    var swiper = new Swiper('.swiper-container', { // HTML element selector
-        slidesPerView: "auto", // How many slides do we want per view? You can specify a number
-        spaceBetween: 11, // Space between the slides
-        freeMode: false, // Free rolling slider
-        loop: true, // Swiper loops your slides, and there is no ending point
-        loopedSlides: 8, // Safe option which needs to be set if you use slidesPerView: 'auto'
-        autoplay: 4500,
-        autoplayDisableOnInteraction: false,
-        pagination: '.swiper-pagination'
-    });
 });

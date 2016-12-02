@@ -18,7 +18,11 @@
             <tr>
                 <td><a href="{{ path('admin_leilao_show', { 'id': leilao.id }) }}">{{ leilao.id }}</a></td>
                 <td>{% if leilao.datainicio %}{{ leilao.datainicio|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if leilao.tempoleilao %}{{ leilao.tempoleilao|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if leilao.tempoleilao != 'encerrado' %}
+                        {{ leilao.tempoleilao|date('Y-m-d H:i:s') }}
+                    {% else %}
+                        Encerrado
+                    {% endif %}</td>
                 <td>
                     <ul>
                         <li>

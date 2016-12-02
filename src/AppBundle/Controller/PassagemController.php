@@ -48,6 +48,17 @@ class PassagemController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $file = $passagem->getImagem();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            $file->move(
+                $this->getParameter('imagem_directory'),
+                $fileName
+            );
+
+            $passagem->setImagem($fileName);
+
             $em->persist($passagem);
             $em->flush();
 

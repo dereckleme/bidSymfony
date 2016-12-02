@@ -19,17 +19,17 @@
   /*border-right: 3px solid #fff; */
 }
 .titles-top {
-  font-size: 90px;
-  margin-bottom: 0px; 
-  height: 50px; 
-  margin-top: 50px;  
+  font-size: 80px;
+  margin-bottom: 0px;
+  height: 50px;
+  margin-top: 50px;
  }
 .titles-bottom {
   font-size: 45px;
-  margin-top: 20px; 
-  height: 50px; 
-  margin-bottom: 10px; 
-  padding-left: 50px; 
+  margin-top: 20px;
+  height: 50px;
+  margin-bottom: 10px;
+  padding-left: 50px;
   width: auto;
  }
 
@@ -65,7 +65,7 @@ nav ul a {
  color: #5b4629;
  border-right: solid 1px #5b4629;
 }
-nav ul a:hover { 
+nav ul a:hover {
  background-color: transparent;
  color: #281c0c;
 }
@@ -312,4 +312,3 @@ nav .brand-logo {
   filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
 }
-

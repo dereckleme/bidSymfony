@@ -8,6 +8,9 @@ $(document).ready(function(){
     // Chamada select destinos
     $('select').material_select();
 
+    $('#idInfo_0_detail').css({"border":"3px solid #ff4242"});
+    $('#idInfo_0_detail').show();
+
 
     $('#highlight_0').hover(
         function () {
